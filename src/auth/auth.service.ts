@@ -32,17 +32,17 @@ export class AuthService {
       return this.signToken(user.id, user.email);
     } catch (error) {
       if (
-           error instanceof
-           Prisma.PrismaClientKnownRequestError
-         ) {
-           if (error.code === 'P2002') {
-             throw new ForbiddenException(
-               'Credentials taken, email already exists',
-             );
-           }
-         }
-         throw error;
-       }
+        error instanceof
+        Prisma.PrismaClientKnownRequestError
+      ) {
+        if (error.code === 'P2002') {
+          throw new ForbiddenException(
+            'Credentials taken, email already exists',
+          );
+        }
+      }
+      throw error;
+    }
   }
 
   async signin(dto: AuthDto) {
